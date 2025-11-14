@@ -23,7 +23,7 @@ class NoteItem  extends StatelessWidget {
           subtitle: Padding(
             padding: const EdgeInsets.only(top: 16.0,bottom: 16),
             child: Text('Build your career with Flutter',style: TextStyle(
-              color: Colors.black.withOpacity(0.5),
+              color: Colors.black.withValues(),
               fontSize: 18,
             ),),
           ),
@@ -34,7 +34,7 @@ class NoteItem  extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 24),
           child: Text("May 21, 2025",style: TextStyle(
-            color: Colors.black.withOpacity(0.4),
+            color: Colors.black.withValues(),
             fontSize: 16,
           ),),
         ),
