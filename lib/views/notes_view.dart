@@ -16,7 +16,9 @@ showModalBottomSheet(context: context, builder: (context){
   return AddNoteBottomSheet();
 });
 
-      },
+      },shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16)
+      ),
       child: Icon(Icons.add),
       ),
     );
