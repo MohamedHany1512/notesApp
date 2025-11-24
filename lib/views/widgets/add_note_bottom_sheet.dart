@@ -16,7 +16,6 @@ class AddNoteBottomSheet extends StatelessWidget {
           if(state is AddNoteSuccess){
             Navigator.pop(context);
           }else if(state is AddNoteFailure){
-            print('failure: ${state.errorMessage}');
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.errorMessage))
             );
@@ -26,8 +25,10 @@ class AddNoteBottomSheet extends StatelessWidget {
           return AbsorbPointer(
             absorbing: state is AddNoteLoading ? true : false,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: SingleChildScrollView(child: const  AddNoteForm()),
+              padding:  EdgeInsets.only(right: 16.0,left: 16,
+              bottom: MediaQuery.of(context).viewInsets.bottom
+              ),
+              child:const SingleChildScrollView(child:   AddNoteForm()),
             ),
           );
         },

@@ -51,6 +51,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       title: title!,
                       subtitle: subtitle!,
                       date: DateTime.now().toString(),
+                      // ignore: deprecated_member_use
                       color: Colors.blue.value,
                     );
                     BlocProvider.of<AddNoteCubit>(context).addNote(note);
