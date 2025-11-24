@@ -10,12 +10,11 @@ final void Function(String?)? onSaved;
   Widget build(BuildContext context) {
     return TextFormField(
       validator: (value) {
-        if( value?.isNotEmpty ?? true) {
-      return  "Field is required ";
-      }
-      else{
-        return null;
-      }
+        if (value == null || value.isEmpty) {
+          return "Field is required";
+        } else {
+          return null;
+        }
       },
       onSaved: onSaved,
       maxLines: maxLines,
