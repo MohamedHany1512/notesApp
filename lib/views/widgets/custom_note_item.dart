@@ -4,18 +4,20 @@ import 'package:noteapp/cubits/notes_cubit/notes_cubit.dart';
 import 'package:noteapp/models/note_model.dart';
 import 'package:noteapp/views/edit_note_view.dart';
 
-class NoteItem  extends StatelessWidget {
-  const NoteItem ({super.key, required this.note});
- final NoteModel note;
+class NoteItem extends StatelessWidget {
+  const NoteItem({super.key, required this.note});
+  final NoteModel note;
   @override
   Widget build(BuildContext context) {
-    return  GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => EditNoteView()));
-
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EditNoteView(note: note)),
+        );
       },
       child: Container(
-        padding: const EdgeInsets.only(top: 24,bottom: 24,left: 16),
+        padding: const EdgeInsets.only(top: 24, bottom: 24, left: 16),
         decoration: BoxDecoration(
           color: Color(note.color),
           borderRadius: BorderRadius.circular(16),
@@ -23,34 +25,47 @@ class NoteItem  extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-          ListTile(
-            title: Text(note.title,style: TextStyle(
-              color: Colors.black,
-              fontSize: 26,
-              fontWeight: FontWeight.bold,
-            ),),
-            subtitle: Padding(
-              padding: const EdgeInsets.only(top: 16.0,bottom: 16),
-              child: Text(note.subtitle,style: TextStyle(
-                color: Colors.black.withValues(),
-                fontSize: 18,
-              ),),
+            ListTile(
+              title: Text(
+                note.title,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 16.0, bottom: 16),
+                child: Text(
+                  note.subtitle,
+                  style: TextStyle(
+                    color: Colors.black.withValues(),
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              trailing: IconButton(
+                onPressed: () {
+                  note.delete();
+                  BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                },
+                icon: Icon(Icons.delete),
+                color: Colors.black,
+                iconSize: 24,
+              ),
             ),
-            trailing: IconButton(
-              onPressed: (){
-                note.delete();
-                BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-              },
-              icon: Icon(Icons.delete),color: Colors.black,iconSize: 24,),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 24),
-            child: Text(note.date,style: TextStyle(
-              color: Colors.black.withValues(),
-              fontSize: 16,
-            ),),
-          ),
-        ],),
+            Padding(
+              padding: const EdgeInsets.only(right: 24),
+              child: Text(
+                note.date,
+                style: TextStyle(
+                  color: Colors.black.withValues(),
+                  fontSize: 16,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
